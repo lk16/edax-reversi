@@ -15,8 +15,9 @@
  * struct Eval
  * @brief evaluation function
  */
-typedef struct Eval {
-	int *feature;         /**!< discs' features */
+typedef struct Eval
+{
+	int *feature; /**!< discs' features */
 	int player;
 } Eval;
 
@@ -25,17 +26,33 @@ struct Move;
 
 extern short ***EVAL_WEIGHT;
 
-
 /* function declaration */
-void eval_open(const char*);
+void eval_open(const char *);
 void eval_close(void);
-void eval_init(Eval*);
-void eval_free(Eval*);
-void eval_set(Eval*, const struct Board*);
-void eval_update(Eval*, const struct Move*);
-void eval_restore(Eval*, const struct Move*);
-void eval_pass(Eval*);
+void eval_init(Eval *);
+void eval_free(Eval *);
+void eval_set(Eval *, const struct Board *);
+void eval_update(Eval *, const struct Move *);
+void eval_restore(Eval *, const struct Move *);
+void eval_pass(Eval *);
 double eval_sigma(const int, const int, const int);
 
-#endif
+/** coordinate to feature conversion */
+typedef struct CoordinateToFeature
+{
+	int n_feature;
+	struct
+	{
+		int i;
+		int x;
+	} feature[16];
+} CoordinateToFeature;
 
+/** feature to coordinates conversion */
+typedef struct FeatureToCoordinate
+{
+	int n_square;
+	int x[16];
+} FeatureToCoordinate;
+
+#endif
